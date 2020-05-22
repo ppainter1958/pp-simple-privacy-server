@@ -5,5 +5,9 @@
   "main": "app.js",
   "author": "Paul Painter",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ppainter1958/pp-simple-privacy-server.git"
+  }
 }
