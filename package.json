@@ -1,0 +1,9 @@
+{
+  "name": "pp-simple-privacy-server",
+  "version": "1.0.0",
+  "description": "Simple server for privacy related stuff",
+  "main": "app.js",
+  "author": "Paul Painter",
+  "license": "MIT",
+  "private": true
+}
