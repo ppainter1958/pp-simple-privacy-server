@@ -1,0 +1,30 @@
+﻿{
+    "compilerOptions": {
+      "target": "es5",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "charset": "utf8",
+      "experimentalDecorators": true,
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "CommonJS",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noImplicitAny": false,
+      //"noEmit": true,
+      "sourceMap": true,
+      "baseUrl": "./",
+      "outDir": "./dist",
+      //"outFile": "main.js"
+    },
+    "include": ["src/**/*"],
+    "exclude": ["**/node_modules", "**/.*/"],
+  }
