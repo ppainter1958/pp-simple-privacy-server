@@ -1,51 +1,43 @@
-﻿import URL, { URLSearchParams } from 'url';
+﻿import url from "url";
 
 export let secretRequest = function (req, res) {
-    const reqUrl = URL.parse(req.url, true);
-//    let qsSearch = new URLSearchParams(reqUrl.search);
-//   if((qsSearch !== 'undefined') && (qsSearch.has('label')){
-//        let labelValue:string = qsSearch.get('label');
-        let labelValue:string = 'label';
-        let response = {};
-        response[labelValue] = "YOUR SECRET IS HERE";
+  //  Lookup the secret key in the env and return its value
+  const reqURL = new URL(req.url!, `http://${req.headers.host}`);
+  let keyValue = reqURL.searchParams.get("key");
+  let response = {};
+  response[keyValue!] = process.env[keyValue!];
 
-//    })
-
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(response));
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(response));
 };
 
 export let sampleRequest = function (req, res) {
-    const reqUrl = URL.parse(req.url, true);
-    var name = 'World';
-    if (reqUrl.query.name) {
-        name = reqUrl.query.name as string;
-    }
+  const reqURL = new URL(req.url!, `http://${req.headers.host}`);
+  var response = {};
+  reqURL.searchParams.forEach((value, name) => {
+    response[name] = value;
+  });
 
-    var response = {
-        "text": "Hello " + name
-    };
-
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(response));
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(response));
 };
 
-export let errorInRequest = function (req, res, e){
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(e));
-}
+export let errorInRequest = function (req, res, e) {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(e));
+};
 
-export function unknownRequest (req, res){
-    var response = {};
-    response['Status'] = 'Unknown Service';
-    response['Message'] = 'text';
+export function unknownRequest(req, res) {
+  var response = {};
+  response["Status"] = "Unknown Service";
+  response["Message"] = "text";
 
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(response));
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json");
+  res.end(JSON.stringify(response));
 }
 
 export default secretRequest;

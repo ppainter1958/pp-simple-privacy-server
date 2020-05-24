@@ -3,7 +3,7 @@ import * as http from "http";
 import * as service from "./Service";
 
 export default http.createServer((req, res) => {
-  // This is the requestListener function for our controller.
+  // This is the requestListener function for our controller. It is invoked when the server recieves a request.
   // Perform very simple routing here to the various REST resource service functions
 
     try {
@@ -21,7 +21,6 @@ export default http.createServer((req, res) => {
         return;
     }
     catch (e){
-        console.trace();
         console.log(e);
     }
 });

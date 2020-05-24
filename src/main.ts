@@ -1,9 +1,11 @@
 ﻿console.log('main starts');
 
-import server from "./Server";
+import {PrivateServer} from "./PrivateServer";
+import { Server } from "http";
 
 export function main(){
-    server();
+    var myServer = new PrivateServer('privacy.env');
+    myServer.listenNow();
 
 }
 main();
