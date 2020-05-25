@@ -5,8 +5,14 @@ export let secretRequest = function (req, res) {
   const reqURL = new URL(req.url!, `http://${req.headers.host}`);
   let keyValue = reqURL.searchParams.get("key");
   let response = {};
-  response[keyValue!] = process.env[keyValue!];
-
+  response[keyValue!] = process.env[keyValue!]
+    ? process.env[keyValue!]
+    : "NotFound";
+  if (process.env[keyValue!]) {
+    console.log("[SPS]: Returned value for key:" + keyValue);
+  } else {
+    console.log("[SPS]: Value not found for key:" + keyValue);
+  }
   res.statusCode = 200;
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(response));

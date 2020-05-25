@@ -8,7 +8,7 @@ export default http.createServer((req, res) => {
 
     try {
         const reqURL = new URL(req.url!, `http://${req.headers.host}`);
-        console.log("Request Type:" + req.method + " Endpoint: " + reqURL.pathname);
+        console.log("[SPS]: Request:" + req.method + " Resource: " + reqURL.pathname);
 
         if (reqURL.pathname == "/secret" && req.method === "GET") {
           service.secretRequest(req, res);

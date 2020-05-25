@@ -2,6 +2,8 @@
 
 Simple server for privacy related stuff. This is never intended for production, just to mock a secret management REST API for locally running node js apps.
 
+`sps privacy.env`
+
 Written in Typescript, this is very rudimentary Service Controller pattern for a REST API service.
 
 * `PrivateServer.ts` - a class using http.server instance configured by importing `Controller.ts`. Method `listenNow()` is used to start the server listener.

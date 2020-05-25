@@ -1,5 +1,4 @@
 ﻿import server from "./Controller";
-import env from 'node-env-file';
 
 export class PrivateServer {
   vaultPath: string;
@@ -8,18 +7,12 @@ export class PrivateServer {
 
   constructor(vaultPath: string) {
     this.vaultPath = vaultPath;
-    try {
-        env(__dirname + '/' + this.vaultPath);
-        console.log('Configured privacy environment');
-    }
-    catch (e) {
-        console.log(e);
-    }
+    console.log(`[SPS]: Server using ${this.vaultPath}`);
   }
 
   listenNow() {
     server.listen(this.port, this.hostname, () => {
-      console.log(`Server running at http://${this.hostname}:${this.port}/`);
+      console.log(`[SPS]: Server running at http://${this.hostname}:${this.port}/`);
     });
   }
 }
