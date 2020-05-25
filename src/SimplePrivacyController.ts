@@ -1,14 +1,14 @@
-﻿import url from 'url';
-import * as http from "http";
-import * as service from "./Service";
+﻿import {URL} from 'url';
+import {IncomingMessage, ServerResponse, createServer as httpCreateServer}  from "http";
+import * as service from "./SimplePrivacyService";
 
-export default http.createServer((req, res) => {
+export default httpCreateServer((req:IncomingMessage, res:ServerResponse) => {
   // This is the requestListener function for our controller. It is invoked when the server recieves a request.
   // Perform very simple routing here to the various REST resource service functions
 
     try {
         const reqURL = new URL(req.url!, `http://${req.headers.host}`);
-        console.log("[SPS]: Request:" + req.method + " Resource: " + reqURL.pathname);
+        console.log("[SPS][SimplePrivacyServer]: Request:" + req.method + " Resource: " + reqURL.pathname + reqURL.search);
 
         if (reqURL.pathname == "/secret" && req.method === "GET") {
           service.secretRequest(req, res);

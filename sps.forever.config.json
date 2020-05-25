@@ -1,0 +1,13 @@
+// fovever config for sps
+[
+    {
+    "uid": "sps",
+    "append": true,
+    "watch": true,
+    "script": "main.js",
+    "sourceDir": "c:/users/painterp/repos/pp-simple-privacy-server/dist",
+    "logFile": "c:/users/painterp/logs/forever.log",
+    "outFile": "c:/users/painterp/logs/forever-out.log",
+    "errFile": "c:/users/painterp/logs/forever-error.log"
+    }
+]

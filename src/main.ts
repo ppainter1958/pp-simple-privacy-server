@@ -1,5 +1,5 @@
 ﻿import path from "path";
-import { PrivateServer } from "./PrivateServer";
+import { SimplePrivacyServer } from "./SimplePrivacyServer";
 import env from "node-env-file";
 
 var env_file = process.argv[2];
@@ -9,7 +9,7 @@ function initEnv(): boolean {
   // to setup for the PrivateService.
   if (typeof env_file !== "string") {
     console.error(
-      "[SPS]: ERROR Environment file argument is not a valid `String`:",
+      "[SPS][main][initEnv]: ERROR ARGV[2] env file argument is not a valid `String`:",
       env_file
     );
     return false;
@@ -18,14 +18,14 @@ function initEnv(): boolean {
   try {
     env_file = path.resolve(env_file);
   } catch (err) {
-    console.error("[SPS]: Environment file path could not be resolved: " + err);
+    console.error("[SPS][main][initEnv]: Environment file path could not be resolved: " + err);
     return false;
   }
 
-  console.log("[SPS]: Environment file path:" + env_file);
+  console.log("[SPS][main][initEnv]: Environment file path:" + env_file);
   try {
     env(env_file);
-    console.log("[SPS]: Configured privacy environment settings");
+    console.log("[SPS][main][initEnv]: Configured privacy environment settings");
   } catch (e) {
     console.log(e);
     return false;
@@ -35,10 +35,10 @@ function initEnv(): boolean {
 
 export function main() {
   if (initEnv()) {
-    var myServer = new PrivateServer(env_file);
+    var myServer = new SimplePrivacyServer(env_file);
     myServer.listenNow();
   }
 }
-console.log("[SPS]: main starts");
+console.log("[SPS][main]: starting");
 main();
-console.log("[SPS]: main exits");
+console.log("[SPS][main]: exiting");
