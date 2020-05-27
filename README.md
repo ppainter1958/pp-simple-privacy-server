@@ -2,7 +2,7 @@
 
 ## Description
 
-[git repo](https://github.com/ppainter1958/pp-simple-privacy-server)
+[git repo](https://github.com/ppainter1958/pp-simple-privacy-service)
 
 Simple server for privacy related stuff. This is never intended for production, just to mock a secret management REST API for locally running node js apps.
 
@@ -32,3 +32,5 @@ yarn add typescript -D
 # but in a different folder. Helped figure out the tsconfig.json
 mkdir dist  # for the tsc compiler output
 ```
+
+A note of gratitude for this [blog](https://blog.atomist.com/declaration-file-fix/) without which I would not have figured out how to set types for the old [node-env-file](https://www.npmjs.com/package/node-env-file) module.

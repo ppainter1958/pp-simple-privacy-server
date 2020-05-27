@@ -1,5 +1,8 @@
 {
     "files.exclude": {
         "**/*.js: { \"when\": \"$(basename).ts\" }": true
-    }
+    },
+    "prettier.packageManager": "yarn",
+    "eslint.packageManager": "yarn",
+    "editor.formatOnType": true
 }

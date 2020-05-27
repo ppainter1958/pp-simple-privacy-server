@@ -1,23 +1,31 @@
 {
   "name": "pp-simple-privacy-server",
   "version": "1.0.0",
-  "description": "Simple server for privacy related stuff",
-  "main": "main.js",
+  "description": "Simple Privacy Service for privacy related stuff",
+  "main": "./lib/index.js",
+  "bin": {
+    "sps": "./lib/index.js"
+  },
   "author": "Paul Painter",
   "license": "MIT",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/ppainter1958/pp-simple-privacy-server.git"
+    "url": "https://github.com/ppainter1958/pp-simple-privacy-service.git"
   },
   "scripts": {
-    "sps": "forever start ./sps.forever.config.json ../privacy.env"
+    "sps": "forever start ./sps.forever.config.json ../privacy.env",
+    "start": "nodemon --watch 'src/**/*.ts --exec 'ts-node' src/index.ts",
+    "build": "tsc -p"
   },
   "devDependencies": {
+    "@types/node": "^14.0.5",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.1",
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "@types/node": "^14.0.5",
+    "commander": "^5.1.0",
     "node-env-file": "^0.1.8",
     "sync-request": "^6.1.0"
   }

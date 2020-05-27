@@ -1,20 +1,29 @@
-﻿import server from "./SimplePrivacyController";
+﻿import http from "http";
+const prefix: string = "[SPServer]";
 
 export class SimplePrivacyServer {
-  vaultPath: string;
-  hostname = "127.0.0.1"; // default localhost
-  port = 3000;            // default port 3000
-
-  constructor(vaultPath: string) {
-    this.vaultPath = vaultPath;
-    console.log(`[SPS][PrivateServer]: Server using ${this.vaultPath}`);
+  private httpServer: http.Server;
+  private hostname: string ="127.0.0.1";
+  private port = 3000; // default port 3000
+  private urlOrigin: string;
+  constructor(
+    controllerListener: (
+      req: http.IncomingMessage,
+      res: http.ServerResponse
+    ) => any,
+    theHostname?: string,
+    thePort?: number
+  ) {
+    this.hostname = (theHostname !== undefined) ? theHostname : this.hostname;
+    this.httpServer = http.createServer(controllerListener);
+    this.urlOrigin = `http://${this.hostname}:${this.port}/`;
+    console.log(`${prefix}[constructor]: Server created for ${this.urlOrigin}`);
   }
 
   listenNow() {
-    server.listen(this.port, this.hostname, () => {
-      console.log(`[SPS][PrivateServer]: Server running at http://${this.hostname}:${this.port}/`);
-
-      console.log(`[SPS][PrivateServer]: vaultPath='${this.vaultPath}'`);
+    console.log(`${prefix}[listenNow]:`);
+    this.httpServer.listen(this.port, this.hostname, () => {
+      console.log(`    Server listening at ${this.urlOrigin}`);
     });
   }
 }
