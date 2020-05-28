@@ -4,5 +4,11 @@
     },
     "prettier.packageManager": "yarn",
     "eslint.packageManager": "yarn",
-    "editor.formatOnType": true
+    "editor.formatOnType": true,
+    "VSCodeCounter.showInStatusBar": true,
+    "omnisharp.enableEditorConfigSupport": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "files.autoGuessEncoding": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "VSCodeCounter.useFilesExclude": false
 }

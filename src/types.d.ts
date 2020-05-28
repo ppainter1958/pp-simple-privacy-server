@@ -1,1 +1,1 @@
-﻿declare module 'node-env-file';
+declare module 'node-env-file';

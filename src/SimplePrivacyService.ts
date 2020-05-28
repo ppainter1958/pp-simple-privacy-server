@@ -1,9 +1,12 @@
-﻿import path from 'path';
+import path from 'path';
 import env = require('node-env-file');
-const prefix: string = "[SPService]";
+const prefix = "[SPService]";
 
 export interface SPServiceSearchParams {
-  [index: string]: any
+  [index: string]: string
+}
+export interface RequestBody {
+  [index: string]: string
 }
 
 export class SimplePrivacyService {
@@ -13,29 +16,30 @@ export class SimplePrivacyService {
     SimplePrivacyService.initEnv(this.env_filename);
   }
 
-  secretsRequest(secretId: string): object {
+  secretsRequest(secretId: string): RequestBody {
     //  Lookup the secret key in the env and return its value
-    let response = JSON.parse('{"key":"value"}');
-    let pref = `"${prefix}[secretsRequest]:\n"`;
+    const response = JSON.parse('{"key":"value"}');
+    const pref = `"${prefix}[secretsRequest]:\n"`;
     response.key = secretId;
     response.value = process.env[secretId] || "NotFound";
-    let msg = response.value
+    const msg = response.value
       ? "  Returned value for key:"
       : "  Value not found for key:";
     console.log(pref + msg);
     return response;
   }
 
-  sampleRequest(qsParams: SPServiceSearchParams): object {
-    let pref = `"${prefix}[sampleRequest]:\n"`;
+  sampleRequest(qsParams: SPServiceSearchParams): RequestBody {
+    const pref = `"${prefix}[sampleRequest]:\n"`;
+    console.log(pref);
     console.log("  Query string values:" + JSON.stringify(qsParams));
     // qsParams.keys().forEach((name:string) => {}
     return qsParams;
   }
 
-  static initEnv(env_file: string) {
+  static initEnv(env_file: string): void {
     if (typeof env_file !== "string") {
-      let e = new TypeError(
+      const e = new TypeError(
         prefix + "[initEnv]: env filename argument is not a valid String:"
       );
       console.error(e.message + env_file);
@@ -55,9 +59,8 @@ export class SimplePrivacyService {
     console.log(prefix + "[initEnv]: Environment file path:" + env_file);
     try {
       env(env_file);
-      console.log(
-        prefix + "[initEnv]: Configured privacy environment settings"
-      );
+      // prettier-ignore
+      console.log(prefix + "[initEnv]: Configured privacy environment settings");
     } catch (err) {
       console.error(prefix + "[initEnv]: Exception processing:" + env_file);
       console.error("  " + err.name + ":" + err.message);

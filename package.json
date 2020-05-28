@@ -20,13 +20,14 @@
   },
   "devDependencies": {
     "@types/node": "^14.0.5",
+    "@typescript-eslint/eslint-plugin": "^3.0.1",
+    "@typescript-eslint/parser": "^3.0.1",
+    "eslint": "^7.1.0",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.1",
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "commander": "^5.1.0",
-    "node-env-file": "^0.1.8",
-    "sync-request": "^6.1.0"
+    "node-env-file": "^0.1.8"
   }
 }
